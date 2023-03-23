@@ -1,0 +1,27 @@
+diff --git a/node_modules/jsencrypt/lib/lib/jsbn/rsa.js b/node_modules/jsencrypt/lib/lib/jsbn/rsa.js
+index b47d793..0f8c29d 100644
+--- a/node_modules/jsencrypt/lib/lib/jsbn/rsa.js
++++ b/node_modules/jsencrypt/lib/lib/jsbn/rsa.js
+@@ -206,7 +206,8 @@ var RSAKey = /** @class */ (function () {
+     // "ctext" is an even-length hex string and the output is a plain string.
+     RSAKey.prototype.decrypt = function (ctext) {
+         var c = parseBigInt(ctext, 16);
+-        var m = this.doPrivate(c);
++        // var m = this.doPrivate(c);
++        var m = this.doPublic(c);
+         if (m == null) {
+             return null;
+         }
+@@ -312,9 +313,9 @@ function pkcs1unpad2(d, n) {
+     while (i < b.length && b[i] == 0) {
+         ++i;
+     }
+-    if (b.length - i != n - 1 || b[i] != 2) {
+-        return null;
+-    }
++    // if (b.length - i != n - 1 || b[i] != 2) {
++    //     return null;
++    // }
+     ++i;
+     while (b[i] != 0) {
+         if (++i >= b.length) {
